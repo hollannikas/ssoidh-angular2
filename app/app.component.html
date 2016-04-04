@@ -1,4 +1,8 @@
 <!DOCTYPE html>
-<h1>Screenshot, or it didn't happen</h1>
-
-<picture-grid>Loading pictures...</picture-grid>
+<h1>{{title}}</h1>
+<nav>
+  <a [routerLink]="['PictureGrid']">Main grid</a>
+  <a [routerLink]="['Upload']">Upload</a>
+  <a [routerLink]="['Timeline']">Timeline</a>
+</nav>
+<router-outlet></router-outlet>
