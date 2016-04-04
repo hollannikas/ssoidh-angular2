@@ -1,6 +1,12 @@
 import {Injectable} from 'angular2/core';
 import {Http, Headers, Response, Request, RequestMethod, RequestOptions, RequestOptionsArgs} from 'angular2/http';
 
+export class Picture {
+  private id:string;
+  private caption:string;
+  private filename:string;
+}
+
 @Injectable()
 export class PictureService {
 
@@ -11,10 +17,10 @@ export class PictureService {
   }
 
   /**
-   * Retrieves picture IDs from service
+   * Retrieves pictures from service
    * @returns {Promise<T>}
    */
-  getPictureIDs():Promise<string[]> {
+  getPictures():Promise<Picture[]> {
     this.headers = new Headers();
     this.headers.append('Content-Type', 'application/json; charset=UTF-8');
     this.headers.append('Accept', 'application/json; charset=UTF-8');

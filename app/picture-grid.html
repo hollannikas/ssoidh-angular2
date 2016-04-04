@@ -1,0 +1,8 @@
+<!DOCTYPE html>
+
+<div id="mainwrapper" *ngFor="#picture of pictures">
+  <div class="box">
+    <img src="http://localhost:8080/rest/pictures/{{picture?.id}}/thumbnail" />
+    <span class="caption simple-caption">{{picture?.caption}}</span>
+  </div>
+</div>
