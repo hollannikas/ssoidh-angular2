@@ -3,6 +3,19 @@
 <div id="mainwrapper" *ngFor="#picture of pictures">
   <div class="box">
     <img src="http://localhost:8080/rest/pictures/{{picture?.id}}/thumbnail" />
-    <span class="caption full-caption">{{picture?.caption}}</span>
+    <div class="caption simple-caption">
+      <div>{{picture?.caption}}</div>
+      <div>
+        <a href="https://twitter.com/intent/tweet">
+          <img src="https://simplesharebuttons.com/images/somacro/twitter.png" width="20px" height="20px" style="float: left"/>
+        </a>
+        <a href="http://www.facebook.com/sharer.php?u=https://simplesharebuttons.com" target="_blank">
+            <img src="https://simplesharebuttons.com/images/somacro/facebook.png" width="20px" height="20px" style="float: left"/>
+        </a>
+        <a href="http://reddit.com/submit?url=https://simplesharebuttons.com&amp;title=Simple Share Buttons" target="_blank">
+            <img src="https://simplesharebuttons.com/images/somacro/reddit.png" width="20px" height="20px" style="float: left"/>
+        </a>
+      </div>
+    </div>
   </div>
 </div>
