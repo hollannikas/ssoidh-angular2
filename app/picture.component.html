@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+
+<div class="container">
+
+  <div class="row">
+
+    <img src="http://localhost:8080/rest/pictures/{{id}}" class="img-rounded"/>
+  </div>
+
+  <div class="row">
+
+    <a href="#">Comments <span class="badge">{{comments.length}}</span></a>
+  </div>
+
+  <div *ngFor="#comment of comments" class="row">
+    {{comment}}
+  </div>
+
+  <div class="row">
+
+    <div class="col-md-3">
+            <textarea placeholder="add a comment"></textarea>
+    </div>
+    <div class="col-md-3">
+      <button type="submit" class="btn btn-success green"> Comment </button>
+
+    </div>
+
+  </div>
+</div>

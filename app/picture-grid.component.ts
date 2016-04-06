@@ -3,10 +3,12 @@
  */
 import {Component} from 'angular2/core';
 import {PictureService, Picture} from './picture-service';
+import {ROUTER_DIRECTIVES} from "angular2/router";
 
 @Component({
   selector: 'picture-grid',
   templateUrl: 'app/picture-grid.html',
+  directives: ROUTER_DIRECTIVES,
   providers: [PictureService]
 })
 

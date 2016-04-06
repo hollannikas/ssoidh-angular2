@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 
 <div id="mainwrapper" *ngFor="#picture of pictures">
-  <div class="box">
+  <div [routerLink]="['Picture', { id: picture?.id}]" class="box">
     <img src="http://localhost:8080/rest/pictures/{{picture?.id}}/thumbnail" />
     <div class="caption simple-caption">
       <div>{{picture?.caption}}</div>

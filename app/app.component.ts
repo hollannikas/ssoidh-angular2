@@ -3,6 +3,7 @@ import { RouteConfig, ROUTER_DIRECTIVES, ROUTER_PROVIDERS } from 'angular2/route
 import {PictureGridComponent} from './picture-grid.component';
 import {TimelineComponent} from './timeline.component';
 import {UploadComponent} from './upload.component';
+import {PictureComponent} from './picture.component';
 
 @Component({
   selector: 'main',
@@ -27,6 +28,11 @@ import {UploadComponent} from './upload.component';
     path: '/timeline',
     name: 'Timeline',
     component: TimelineComponent
+  },
+  {
+    path: '/picture/:id',
+    name: 'Picture',
+    component: PictureComponent
   }
 ])
 
