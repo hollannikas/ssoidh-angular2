@@ -1,5 +1,5 @@
 import {Component} from 'angular2/core';
-import { RouteConfig, ROUTER_DIRECTIVES, ROUTER_PROVIDERS } from 'angular2/router';
+import {Router, RouteConfig, ROUTER_DIRECTIVES, ROUTER_PROVIDERS} from 'angular2/router';
 import {PictureGridComponent} from './picture-grid.component';
 import {TimelineComponent} from './timeline.component';
 import {UploadComponent} from './upload.component';
@@ -39,5 +39,8 @@ import {PictureComponent} from './picture.component';
 export class AppComponent {
   title = 'Screenshot, or it didn\'t happen';
 
+  constructor(private router:Router) {
+
+  }
 
 }
