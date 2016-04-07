@@ -1,4 +1,7 @@
 # ssoidh-angular2
+
+[![travis-ci](https://travis-ci.org/hollannikas/ssoidh-angular2.svg?branch=master)](https://travis-ci.org/hollannikas/ssoidh)
+
 Front end for ssoidh
 
 
