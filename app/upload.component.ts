@@ -20,6 +20,7 @@ export class UploadComponent {
   private caption:string = '';
 
   ngOnInit() {
+    // Workaround, as FileUpLoader doesn't instantiate queueLimit
     this.uploader.queueLimit = 10000;
   }
 

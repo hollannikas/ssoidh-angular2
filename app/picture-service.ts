@@ -96,7 +96,7 @@ export class PictureService {
     this.headers.append('Accept', 'application/json; charset=UTF-8');
 
     this.requestoptions = new RequestOptions({
-      method: RequestMethod.Get,
+      method: RequestMethod.Put,
       url: 'http://localhost:8080/rest/pictures/' + pictureId + '/comments/add/' + author + '/' + text,
       headers: this.headers,
     })

@@ -16,6 +16,7 @@ import {CommentComponent} from './comments.component';
 export class PictureComponent {
   private id:string;
   private picture:Picture;
+  private comment:string;
 
   constructor(routeParams:RouteParams, private pictureservice:PictureService) {
     this.id = routeParams.get('id');
@@ -28,7 +29,14 @@ export class PictureComponent {
   update() {
     this.pictureservice.getPicture(this.id).then((_picture:Picture) => {
       this.picture = _picture;
-      console.log(_picture)
+    });
+  }
+
+  addComment() {
+    this.pictureservice.saveComment(this.id, 'Anonymous', this.comment).then((_picture:Picture) => {
+      this.picture = _picture;
+      this.comment = null;
+      this.update();
     });
   }
 }

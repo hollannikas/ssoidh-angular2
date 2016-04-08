@@ -1,15 +1,23 @@
 <!DOCTYPE html>
-<button type="button" class="btn btn-primary"
-        (click)="isCollapsed = !isCollapsed">Show comments
-</button>
-<hr>
-<div [collapse]="isCollapsed" class="card card-block card-header">
 
+<div class="row">
+  <label>Comments <span class="badge">{{comments?.length}}</span></label>
+
+  <button type="button" class="btn btn-default"
+          (click)="isCollapsed = !isCollapsed">Show comments
+  </button>
+</div>
+<div [collapse]="isCollapsed" class="row card card-block card-header">
+  <hr>
   <div *ngIf="comments">
-    <div *ngFor="#comment of comments" class="row">
-      <div>Author: {{comment?.author}}</div>
-      <div>Comment: {{comment?.text}}</div>
-      <div>Date: {{comment?.date | date:'yyyy-MM-dd HH:mm'}}</div>
+    <div *ngFor="#comment of comments">
+      <div class="row">
+        <div class="col-md-6"><strong>{{comment?.author}}</strong> {{comment?.text}}</div>
+      </div>
+      <div class="row">
+        <div class="col-md-2"><small>({{comment?.date | date:'yyyy-MM-dd HH:mm'}})</small></div>
+      </div>
     </div>
   </div>
+  <hr>
 </div>
