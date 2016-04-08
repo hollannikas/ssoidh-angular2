@@ -4,23 +4,18 @@
 import {Component} from 'angular2/core';
 import {RouteParams} from 'angular2/router';
 import {PictureService, Picture} from './picture-service';
-import {DatePipe} from "angular2/common";
-import {Collapse} from 'ng2-bootstrap'
+import {CommentComponent} from './comments.component';
 
 @Component({
   selector: 'picture',
   templateUrl: 'app/picture.component.html',
-  directives: [Collapse],
-  pipes: [DatePipe],
+  directives: [CommentComponent],
   providers: [PictureService]
 })
 
 export class PictureComponent {
   private id:string;
   private picture:Picture;
-  private isCollapsed:boolean = false;
-
-  private comments:string[] = ['First!', 'Second comment.. bla bla bla '];
 
   constructor(routeParams:RouteParams, private pictureservice:PictureService) {
     this.id = routeParams.get('id');
