@@ -10,9 +10,9 @@
 <div [collapse]="isCollapsed" class="row card card-block card-header">
   <hr>
   <div *ngIf="comments">
-    <div *ngFor="#comment of comments">
+    <div *ngFor="#comment of comments" class="well well-sm">
       <div class="row">
-        <div class="col-md-6"><strong>{{comment?.author}}</strong> {{comment?.text}}</div>
+        <div class="col-md-12"><strong>{{comment?.author}}</strong> {{comment?.text}}</div>
       </div>
       <div class="row">
         <div class="col-md-2"><small>({{comment?.date | date:'yyyy-MM-dd HH:mm'}})</small></div>
