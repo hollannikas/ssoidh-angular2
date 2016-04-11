@@ -1,5 +1,6 @@
 import {Injectable} from 'angular2/core';
 import {Http, Headers, Response, Request, RequestMethod, RequestOptions, RequestOptionsArgs} from 'angular2/http';
+import {Observable} from "rxjs";
 
 export class Picture {
   private id:string;
@@ -52,7 +53,7 @@ export class PictureService {
         });
     });
   }
-
+  
   /**
    * Retrieves pictures from service
    * @returns {Promise<T>}

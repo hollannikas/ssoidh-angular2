@@ -3,7 +3,7 @@
  */
 import {Component} from 'angular2/core';
 import {RouteParams} from 'angular2/router';
-import {PictureService, Picture} from './picture-service';
+import {PictureService, Picture} from './services/picture-service';
 import {CommentComponent} from './comments.component';
 
 @Component({

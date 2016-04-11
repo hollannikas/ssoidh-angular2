@@ -4,12 +4,15 @@ import {PictureGridComponent} from './picture-grid.component';
 import {TimelineComponent} from './timeline.component';
 import {UploadComponent} from './upload.component';
 import {PictureComponent} from './picture.component';
+import {SignInComponent} from "./signin.component";
+import {SignUpComponent} from "./signup.component";
+import {SignInService} from "./services/signin-service";
 
 @Component({
   selector: 'main',
   templateUrl: 'app/app.component.html',
-  directives: [ROUTER_DIRECTIVES, PictureGridComponent, TimelineComponent, UploadComponent],
-  providers: [ROUTER_PROVIDERS]
+  directives: [ROUTER_DIRECTIVES, PictureGridComponent, TimelineComponent, UploadComponent, SignInComponent, SignUpComponent],
+  providers: [ROUTER_PROVIDERS, SignInService]
 })
 
 @RouteConfig([
@@ -33,14 +36,29 @@ import {PictureComponent} from './picture.component';
     path: '/picture/:id',
     name: 'Picture',
     component: PictureComponent
+  },
+  {
+    path: '/signin',
+    name: 'SignIn',
+    component: SignInComponent
+  },
+  {
+    path: '/signup',
+    name: 'SignUp',
+    component: SignUpComponent
   }
 ])
 
 export class AppComponent {
   title = 'Screenshot, or it didn\'t happen';
 
-  constructor(private router:Router) {
+  constructor(private router:Router, private signInService:SignInService) {
 
+  }
+
+  logout() {
+    this.signInService.signOut();
+    this.router.navigate(['/PictureGrid']);
   }
 
 }

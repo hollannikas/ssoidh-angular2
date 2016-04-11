@@ -9,10 +9,11 @@
   <div>
     <ul class="nav navbar-nav">
       <li [class.active]="router.isRouteActive(router.generate(['/PictureGrid']))"><a [routerLink]="['PictureGrid']">Main grid</a></li>
-      <li [class.active]="router.isRouteActive(router.generate(['/Upload']))"><a [routerLink]="['Upload']">Upload</a></li>
-      <li [class.active]="router.isRouteActive(router.generate(['/Timeline']))"><a [routerLink]="['Timeline']">Timeline</a></li>
+      <li *ngIf="signInService.isSignedIn()" [class.active]="router.isRouteActive(router.generate(['/Upload']))"><a [routerLink]="['Upload']">Upload</a></li>
+      <li *ngIf="signInService.isSignedIn()" [class.active]="router.isRouteActive(router.generate(['/Timeline']))"><a [routerLink]="['Timeline']">Timeline</a></li>
       <li class="divider"></li>
-      <li><a href="#">About</a></li>
+      <li *ngIf="!signInService.isSignedIn()" [class.active]="router.isRouteActive(router.generate(['/SignIn']))"><a [routerLink]="['SignIn']">Sign in</a></li>
+      <li *ngIf="signInService.isSignedIn()"><a href="#" (click)="logout(); $event.preventDefault()">Sign out</a></li>
     </ul>
   </div>
 

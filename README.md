@@ -7,4 +7,15 @@ Front end for ssoidh
 
 Credit
 Angular2 quick start: (https://angular.io/docs/ts/latest/quickstart.html)
+
+Bootstrap social buttons: (https://github.com/lipis/bootstrap-social)
+
+Bootstrap 3 ()
+
+FontAwesome (https://github.com/FortAwesome/Font-Awesome)
+
+ng2-bootstrap ()
+
+ng2-file-uploader ()
+
 Image caption hover: (http://www.hongkiat.com/blog/css3-image-captions/ )
