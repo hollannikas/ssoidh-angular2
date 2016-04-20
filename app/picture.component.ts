@@ -5,6 +5,7 @@ import {Component, EventEmitter, Output} from 'angular2/core';
 import {RouteParams} from 'angular2/router';
 import {PictureService, Picture} from './services/picture-service';
 import {CommentComponent} from './comments.component';
+import {Response} from "angular2/http";
 
 @Component({
   selector: 'picture',
@@ -28,9 +29,7 @@ export class PictureComponent {
   }
 
   update() {
-    this.pictureservice.getPicture(this.id).then((_picture:Picture) => {
-      this.picture = _picture;
-    });
+    this.pictureservice.getPicture(this.id).subscribe((res:Response) => this.picture = res.json());
   }
 
   addComment(comment:HTMLInputElement) {

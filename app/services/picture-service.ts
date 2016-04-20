@@ -27,28 +27,18 @@ export class PictureService {
 
   /**
    * Retrieves picture from service
-   * @returns {Promise<Picture>}
-   */
-  getPicture(id:string):Promise<Picture> {
-    return new Promise((resolve, reject)=> {
-      this.http.get('http://localhost:8080/rest/pictures/' + id + '/metadata').subscribe(
-        (response:Response) => {
-          const json = response.json();
-          if (json.error) {
-            reject(json);
-          }
-          resolve(json);
-        },
-        () => {
-          reject({error: null});
-        });
-    });
+   * @param id
+   * @returns {Observable<Response>}
+    */
+  getPicture(id:string):Observable<Response> {
+      return this.http.get('http://localhost:8080/rest/pictures/' + id + '/metadata');
   }
-  
+
   /**
    * Retrieves pictures from service
-   * @returns {Promise<T>}
-   */
+   * @returns {Observable<Response>}
+     */
+
   getPictures():Observable<Response> {
     return this.http.get('http://localhost:8080/rest/pictures/');
   }
