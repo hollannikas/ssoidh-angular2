@@ -30,18 +30,8 @@ export class PictureService {
    * @returns {Promise<Picture>}
    */
   getPicture(id:string):Promise<Picture> {
-    this.headers = new Headers();
-    this.headers.append('Content-Type', 'application/json; charset=UTF-8');
-    this.headers.append('Accept', 'application/json; charset=UTF-8');
-
-    this.requestoptions = new RequestOptions({
-      method: RequestMethod.Get,
-      url: 'http://localhost:8080/rest/pictures/' + id + '/metadata',
-      headers: this.headers,
-    })
-
     return new Promise((resolve, reject)=> {
-      this.http.get(new Request(this.requestoptions)).subscribe(
+      this.http.get('http://localhost:8080/rest/pictures/' + id + '/metadata').subscribe(
         (response:Response) => {
           const json = response.json();
           if (json.error) {
@@ -70,7 +60,7 @@ export class PictureService {
    * @returns {Observable<Response>}
      */
   saveComment(pictureId:string, text:string):Observable<Response> {
-    return this.http.put('http://localhost:8080/rest/pictures/' + pictureId + '/comments/add/' + text, "" /*JSON.stringify(text)*/);
+    return this.http.put('http://localhost:8080/rest/pictures/' + pictureId + '/comments/add/', JSON.stringify(text));
   }
   
 }
