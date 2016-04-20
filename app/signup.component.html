@@ -2,29 +2,68 @@
 
 <h1>Sign up</h1>
 
-<form class="form-horizontal">
-  <div class="form-group">
-    <label for="inputUsername3" class="col-sm-2 control-label">Email</label>
-    <div class="col-sm-4">
-      <input type="username" class="form-control" id="inputUsername3" placeholder="Email">
-    </div>
-  </div>
-  <div class="form-group">
-    <label for="inputPassword3" class="col-sm-2 control-label">Password</label>
-    <div class="col-sm-4">
-      <input type="password" class="form-control" id="inputPassword3" placeholder="Password">
-    </div>
-  </div>
-  <div class="form-group">
-    <label for="inputPassword4" class="col-sm-2 control-label">Re-enter password</label>
-    <div class="col-sm-4">
-      <input type="password" class="form-control" id="inputPassword4" placeholder="Password">
-    </div>
+<form [ngFormModel]="myForm" (submit)="onSubmit(myForm.value)" novalidate class="form-horizontal">
+  <div class="form-group" [class.has-error]="!name.valid && name.touched">
+    <label class="control-label" for="nameInput">Name</label>
+    <input [ngFormControl]="name"
+      type="text"
+      class="form-control col-sm-2"
+      id="nameInput"
+      placeholder="Name"
+      maxlength="30"/>
+      <span *ngIf="name.hasError('required') && name.touched"
+            class="help-block">Name is required</span>
+      <span *ngIf="name.hasError('minlength') && name.touched"
+            class="help-block">Name must be longer than 4 chars.</span>
   </div>
 
-  <div class="form-group">
-    <div class="col-sm-offset-2 col-sm-10">
-      <button type="submit" class="btn btn-default">Sign up</button>
-    </div>
+
+  <div class="form-group"
+       [class.has-error]="!email.valid && email.touched">
+    <label class="control-label" for="emailInput">Email</label>
+    <input [ngFormControl]="email"
+      type="email"
+      class="form-control col-sm-2"
+      id="emailInput"
+      placeholder="Email"
+      maxlength="30"/>
+      <span *ngIf="email.hasError('required') && email.touched"
+            class="help-block">Email is required</span>
+      <span *ngIf="email.hasError('pattern') && email.touched"
+            class="help-block">Invalid format</span>
   </div>
+
+  <div class="form-group"
+       [class.has-error]="!password.valid && password.touched">
+    <label class="control-label" for="passwordInput">Password</label>
+    <input [ngFormControl]="password"
+      type="password"
+      class="form-control col-sm-2"
+      id="passwordInput"
+      placeholder="Password"
+      maxlength="100"/>
+      <span *ngIf="password.hasError('required') && password.touched"
+            class="help-block">Password is required</span>
+      <span *ngIf="password.hasError('minlength') && password.touched"
+            class="help-block">Password must be longer than 8 chars.</span>
+  </div>
+
+  <div class="form-group"
+       [class.has-error]="!passwordConfirmation.valid && passwordConfirmation.touched">
+    <label class="control-label" for="passwordConfirmationInput">Confirm
+      Password</label>
+    <input [ngFormControl]="passwordConfirmation"
+      type="password"
+      class="form-control col-sm-2"
+      id="passwordConfirmationInput"
+      placeholder="Confirm Password"/>
+      <span
+        *ngIf="passwordConfirmation.hasError('required') && passwordConfirmation.touched"
+        class="help-block">Password confirmation is required</span>
+      <span
+        *ngIf="passwordConfirmation.hasError('matched') && passwordConfirmation.touched"
+        class="help-block">Doesn't match</span>
+  </div>
+
+  <button type="submit" class="btn btn-lg btn-primary">Submit</button>
 </form>

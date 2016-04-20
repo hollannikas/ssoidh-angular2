@@ -4,6 +4,7 @@
 import {Component} from 'angular2/core';
 import {PictureService, Picture} from './services/picture-service';
 import {ROUTER_DIRECTIVES} from "angular2/router";
+import 'rxjs/add/operator/map';
 
 @Component({
   selector: 'picture-grid',
@@ -20,13 +21,11 @@ export class PictureGridComponent {
   }
 
   ngOnInit() {
-    this.update();
-  }
-
-  update() {
-    this.pictureservice.getPictures().then((_pictures:Picture[]) => {
-      this.pictures = _pictures;
-    });
+    this.pictureservice.getPictures().map(response => response.json())
+      .subscribe(pictures => {
+        this.pictures = pictures;
+      }, (error) => { console.error(error)})
+    ;
   }
 
 }

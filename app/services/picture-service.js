@@ -1,4 +1,4 @@
-System.register(['angular2/core', 'angular2/http'], function(exports_1, context_1) {
+System.register(['angular2/core', 'angular2/http', "../utils/http-client"], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -10,7 +10,7 @@ System.register(['angular2/core', 'angular2/http'], function(exports_1, context_
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, http_1;
+    var core_1, http_1, http_client_1;
     var Picture, Comment, PictureService;
     return {
         setters:[
@@ -19,6 +19,9 @@ System.register(['angular2/core', 'angular2/http'], function(exports_1, context_
             },
             function (http_1_1) {
                 http_1 = http_1_1;
+            },
+            function (http_client_1_1) {
+                http_client_1 = http_client_1_1;
             }],
         execute: function() {
             Picture = (function () {
@@ -52,7 +55,7 @@ System.register(['angular2/core', 'angular2/http'], function(exports_1, context_
                         headers: this.headers,
                     });
                     return new Promise(function (resolve, reject) {
-                        _this.http.request(new http_1.Request(_this.requestoptions)).subscribe(function (response) {
+                        _this.http.get(new http_1.Request(_this.requestoptions)).subscribe(function (response) {
                             var json = response.json();
                             if (json.error) {
                                 reject(json);
@@ -68,59 +71,20 @@ System.register(['angular2/core', 'angular2/http'], function(exports_1, context_
                  * @returns {Promise<T>}
                  */
                 PictureService.prototype.getPictures = function () {
-                    var _this = this;
-                    this.headers = new http_1.Headers();
-                    this.headers.append('Content-Type', 'application/json; charset=UTF-8');
-                    this.headers.append('Accept', 'application/json; charset=UTF-8');
-                    this.requestoptions = new http_1.RequestOptions({
-                        method: http_1.RequestMethod.Get,
-                        url: 'http://localhost:8080/rest/pictures/',
-                        headers: this.headers,
-                    });
-                    return new Promise(function (resolve, reject) {
-                        _this.http.request(new http_1.Request(_this.requestoptions)).subscribe(function (response) {
-                            var json = response.json();
-                            if (json.error) {
-                                reject(json);
-                            }
-                            resolve(json);
-                        }, function () {
-                            reject({ error: null });
-                        });
-                    });
+                    return this.http.get('http://localhost:8080/rest/pictures/');
                 };
                 /**
-                 * Saves a comments to a picture
+                 * adds a comment to a picture's comments
                  * @param pictureId
-                 * @param author
                  * @param text
-                 * @returns {Promise<T>|Promise<R>|Promise}
+                 * @returns {Observable<Response>}
                    */
-                PictureService.prototype.saveComment = function (pictureId, author, text) {
-                    var _this = this;
-                    this.headers = new http_1.Headers();
-                    this.headers.append('Content-Type', 'application/json; charset=UTF-8');
-                    this.headers.append('Accept', 'application/json; charset=UTF-8');
-                    this.requestoptions = new http_1.RequestOptions({
-                        method: http_1.RequestMethod.Put,
-                        url: 'http://localhost:8080/rest/pictures/' + pictureId + '/comments/add/' + author + '/' + text,
-                        headers: this.headers,
-                    });
-                    return new Promise(function (resolve, reject) {
-                        _this.http.request(new http_1.Request(_this.requestoptions)).subscribe(function (response) {
-                            var json = response.json();
-                            if (json.error) {
-                                reject(json);
-                            }
-                            resolve(json);
-                        }, function () {
-                            reject({ error: null });
-                        });
-                    });
+                PictureService.prototype.saveComment = function (pictureId, text) {
+                    return this.http.put('http://localhost:8080/rest/pictures/' + pictureId + '/comments/add/' + text, "" /*JSON.stringify(text)*/);
                 };
                 PictureService = __decorate([
                     core_1.Injectable(), 
-                    __metadata('design:paramtypes', [http_1.Http])
+                    __metadata('design:paramtypes', [http_client_1.HttpClient])
                 ], PictureService);
                 return PictureService;
             }());

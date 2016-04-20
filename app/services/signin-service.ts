@@ -2,7 +2,7 @@
  * Created by rudi on 09/04/16.
  */
 import {Injectable} from 'angular2/core';
-import {Http, Response} from 'angular2/http';
+import {Response, RequestOptions, Headers, Http} from 'angular2/http';
 import {Observable} from "rxjs";
 import 'rxjs/add/operator/do';
 
@@ -30,4 +30,3 @@ export class SignInService {
   }
 
 }
-

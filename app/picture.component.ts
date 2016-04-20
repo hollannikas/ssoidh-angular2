@@ -1,7 +1,7 @@
 /**
  * Created by rudi on 04/04/16.
  */
-import {Component} from 'angular2/core';
+import {Component, EventEmitter} from 'angular2/core';
 import {RouteParams} from 'angular2/router';
 import {PictureService, Picture} from './services/picture-service';
 import {CommentComponent} from './comments.component';
@@ -16,7 +16,8 @@ import {CommentComponent} from './comments.component';
 export class PictureComponent {
   private id:string;
   private picture:Picture;
-  private comment:string;
+
+  commentAdded:EventEmitter<any> = new EventEmitter();
 
   constructor(routeParams:RouteParams, private pictureservice:PictureService) {
     this.id = routeParams.get('id');
@@ -32,11 +33,10 @@ export class PictureComponent {
     });
   }
 
-  addComment() {
-    this.pictureservice.saveComment(this.id, 'Anonymous', this.comment).then((_picture:Picture) => {
-      this.picture = _picture;
-      this.comment = null;
-      this.update();
-    });
+  addComment(comment:HTMLInputElement) {
+    this.pictureservice.saveComment(this.id, comment.value ).subscribe(() => {
+      comment.value = '';
+      this.commentAdded.emit({});
+    }, () => {});
   }
 }

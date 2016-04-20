@@ -1,6 +1,7 @@
 import {Injectable} from 'angular2/core';
-import {Http, Headers, Response, Request, RequestMethod, RequestOptions, RequestOptionsArgs} from 'angular2/http';
+import {Headers, Response, Request, RequestMethod, RequestOptions} from 'angular2/http';
 import {Observable} from "rxjs";
+import {HttpClient} from "../utils/http-client";
 
 export class Picture {
   private id:string;
@@ -21,7 +22,7 @@ export class PictureService {
   private headers:Headers;
   private requestoptions:RequestOptions;
   
-  constructor(private http:Http) {
+  constructor(private http:HttpClient) {
   }
 
   /**
@@ -40,7 +41,7 @@ export class PictureService {
     })
 
     return new Promise((resolve, reject)=> {
-      this.http.request(new Request(this.requestoptions)).subscribe(
+      this.http.get(new Request(this.requestoptions)).subscribe(
         (response:Response) => {
           const json = response.json();
           if (json.error) {
@@ -58,63 +59,18 @@ export class PictureService {
    * Retrieves pictures from service
    * @returns {Promise<T>}
    */
-  getPictures():Promise<Picture[]> {
-    this.headers = new Headers();
-    this.headers.append('Content-Type', 'application/json; charset=UTF-8');
-    this.headers.append('Accept', 'application/json; charset=UTF-8');
-
-    this.requestoptions = new RequestOptions({
-      method: RequestMethod.Get,
-      url: 'http://localhost:8080/rest/pictures/',
-      headers: this.headers,
-    })
-
-    return new Promise((resolve, reject)=> {
-      this.http.request(new Request(this.requestoptions)).subscribe(
-        (response:Response) => {
-          const json = response.json();
-          if (json.error) {
-            reject(json);
-          }
-          resolve(json);
-        },
-        () => {
-          reject({error: null});
-        });
-    });
+  getPictures():Observable<Response> {
+    return this.http.get('http://localhost:8080/rest/pictures/');
   }
 
   /**
-   * Saves a comments to a picture
+   * adds a comment to a picture's comments
    * @param pictureId
-   * @param author
    * @param text
-   * @returns {Promise<T>|Promise<R>|Promise}
+   * @returns {Observable<Response>}
      */
-  saveComment(pictureId:string, author:string, text:string) {
-    this.headers = new Headers();
-    this.headers.append('Content-Type', 'application/json; charset=UTF-8');
-    this.headers.append('Accept', 'application/json; charset=UTF-8');
-
-    this.requestoptions = new RequestOptions({
-      method: RequestMethod.Put,
-      url: 'http://localhost:8080/rest/pictures/' + pictureId + '/comments/add/' + author + '/' + text,
-      headers: this.headers,
-    })
-
-    return new Promise((resolve, reject)=> {
-      this.http.request(new Request(this.requestoptions)).subscribe(
-        (response:Response) => {
-          const json = response.json();
-          if (json.error) {
-            reject(json);
-          }
-          resolve(json);
-        },
-        () => {
-          reject({error: null});
-        });
-    });
+  saveComment(pictureId:string, text:string):Observable<Response> {
+    return this.http.put('http://localhost:8080/rest/pictures/' + pictureId + '/comments/add/' + text, "" /*JSON.stringify(text)*/);
   }
   
 }
