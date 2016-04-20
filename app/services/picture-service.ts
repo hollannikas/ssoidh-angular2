@@ -60,7 +60,7 @@ export class PictureService {
    * @returns {Observable<Response>}
      */
   saveComment(pictureId:string, text:string):Observable<Response> {
-    return this.http.put('http://localhost:8080/rest/pictures/' + pictureId + '/comments/add/', JSON.stringify(text));
+    return this.http.put('http://localhost:8080/rest/pictures/' + pictureId + '/comments', text);
   }
   
 }

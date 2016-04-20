@@ -13,7 +13,7 @@ import {Collapse} from 'ng2-bootstrap';
 })
 
 export class CommentComponent {
-  private isCollapsed:boolean = false;
+  private isCollapsed:boolean = true;
   @Input() private comments:Comment[]
 
   constructor() {
