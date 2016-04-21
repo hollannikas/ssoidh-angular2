@@ -2,33 +2,46 @@
  * Created by rudi on 04/04/16.
  */
 import {Component} from 'angular2/core';
-import {CORE_DIRECTIVES, FORM_DIRECTIVES, NgClass, NgStyle} from 'angular2/common';
-import {FILE_UPLOAD_DIRECTIVES, FileUploader} from 'ng2-file-upload';
-
-const URL = 'http://localhost:8080/rest/pictures/upload/';
+import {
+  CORE_DIRECTIVES, FORM_DIRECTIVES, NgClass, NgStyle, FormBuilder, ControlGroup,
+  Validators
+} from 'angular2/common';
+import {UploadService} from './services/upload-service';
+import {Router, ROUTER_DIRECTIVES} from "angular2/router";
+import {Picture} from "./services/picture-service";
 
 @Component({
   selector: 'upload',
   templateUrl: 'app/upload.component.html',
-  directives: [FILE_UPLOAD_DIRECTIVES, NgClass, NgStyle, CORE_DIRECTIVES, FORM_DIRECTIVES]
+  providers: [UploadService],
+  directives: [ROUTER_DIRECTIVES, NgClass, NgStyle, CORE_DIRECTIVES, FORM_DIRECTIVES]
 })
 
 export class UploadComponent {
 
-  private uploader:FileUploader = new FileUploader({url: URL + this.caption});
-  private hasBaseDropZoneOver:boolean = false;
+  private pictureForm:ControlGroup;
+  private file:File;
   private caption:string = '';
 
-  ngOnInit() {
-    // Workaround, as FileUpLoader doesn't instantiate queueLimit
-    this.uploader.queueLimit = 10000;
+  constructor(private uploadService:UploadService,
+              private router:Router,
+              fb:FormBuilder) {
+    this.pictureForm = fb.group({
+      caption: ["", Validators.required]
+    })
   }
 
-  onBlur() {
-    this.uploader.url = URL + this.caption;
+  fileChanged(event) {
+    this.file = event.srcElement.files.item(0);
+    console.log("File name: ", this.file.name);
   }
-  
-  fileOverBase(e:any) {
-    this.hasBaseDropZoneOver = e;
+
+  upload(event) {
+    this.uploadService.upload(this.file, this.caption).then((result:Picture) => {
+      this.router.navigate(['/Picture', { id: result.id }]);
+    }, (error) => {
+      console.error(error);
+    });
   }
+
 }

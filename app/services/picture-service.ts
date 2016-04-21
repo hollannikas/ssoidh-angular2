@@ -4,16 +4,16 @@ import {Observable} from "rxjs";
 import {HttpClient} from "../utils/http-client";
 
 export class Picture {
-  private id:string;
-  private caption:string;
-  private filename:string;
-  private comments:Comment[];
+  id:string;
+  caption:string;
+  filename:string;
+  comments:Comment[];
 }
 
 export class Comment {
-  private author:string;
-  private text:string;
-  private date:string;
+  author:string;
+  text:string;
+  date:string;
 }
 
 @Injectable()
