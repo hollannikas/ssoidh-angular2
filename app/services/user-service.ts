@@ -12,6 +12,7 @@ export interface UserParams {
   email?:string;
   password?:string;
   name?:string;
+  username?:string;
 }
 
 @Injectable()
@@ -21,8 +22,11 @@ export class UserService {
   }
 
   create(params:UserParams):Observable<Response> {
-    console.log(JSON.stringify(params));
     return this.http.post(url, JSON.stringify(params));
+  }
+
+  getCurrentUser():Observable<Response> {
+    return this.http.get(url);
   }
 
 }

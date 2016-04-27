@@ -21,7 +21,7 @@ export class PictureService {
 
   private headers:Headers;
   private requestoptions:RequestOptions;
-  
+
   constructor(private http:HttpClient) {
   }
 
@@ -41,6 +41,11 @@ export class PictureService {
 
   getPictures():Observable<Response> {
     return this.http.get('http://localhost:8080/rest/pictures/');
+  }
+
+  getUserPictures(user:string):Observable<Response> {
+    const url = (username:string):string => `http://localhost:8080/rest/pictures/by/${username}`;
+    return this.http.get(url(user));
   }
 
   /**
