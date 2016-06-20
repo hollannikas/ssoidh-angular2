@@ -1,19 +1,19 @@
 /**
  * Created by rudi on 08/04/16.
  */
-import {Component, Input} from 'angular2/core';
-import {DatePipe} from "angular2/common";
-import {Collapse} from 'ng2-bootstrap';
+import {Component, Input} from '@angular/core';
+import {DatePipe} from "@angular/common";
+import {CollapseDirective} from 'ng2-bootstrap';
 
 @Component({
   selector: 'comments',
   templateUrl: 'app/comments.component.html',
-  directives: [Collapse],
+  directives: [CollapseDirective],
   pipes: [DatePipe]
 })
 
 export class CommentComponent {
-  private isCollapsed:boolean = true;
+  public isCollapsed:boolean = true;
   @Input() private comments:Comment[]
 
   constructor() {

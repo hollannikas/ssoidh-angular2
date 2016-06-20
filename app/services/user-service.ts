@@ -2,8 +2,8 @@
  * Created by rudi on 17/04/16.
  */
 import {Observable} from "rxjs/Observable";
-import {Injectable} from "angular2/core";
-import {Headers, RequestOptions, Response} from "angular2/http";
+import {Injectable} from "@angular/core";
+import {Response} from "@angular/http";
 import {HttpClient} from "../utils/http-client";
 
 const url = 'http://localhost:8080/rest/users';

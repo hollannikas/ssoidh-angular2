@@ -1,10 +1,10 @@
 /**
  * Created by rudi on 04/04/16.
  */
-import {Component} from 'angular2/core';
+import {Component} from '@angular/core';
 import {UserService, UserParams} from "./services/user-service";
 import {PictureService, Picture} from "./services/picture-service";
-import {ROUTER_DIRECTIVES} from "angular2/router";
+import {ROUTER_DIRECTIVES} from "@angular/router";
 
 @Component({
   selector: 'timeline',

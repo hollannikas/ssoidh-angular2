@@ -2,14 +2,14 @@
  * Created by rudi on 18/04/16.
  */
 import {Observable} from "rxjs/Observable";
-import {Injectable} from "angular2/core";
+import {Injectable} from "@angular/core";
 import {
   Http,
   RequestOptionsArgs,
   RequestOptions,
   Headers,
   Response,
-} from "angular2/http";
+} from "@angular/http";
 
 const mergeAuthToken = (options:RequestOptionsArgs) => {
   let newOptions = new RequestOptions({}).merge(options);

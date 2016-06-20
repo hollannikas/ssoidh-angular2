@@ -1,10 +1,10 @@
 /**
  * Created by rudi on 09/04/16.
  */
-import {Component} from 'angular2/core';
-import {Router, ROUTER_DIRECTIVES} from "angular2/router";
+import {Component} from '@angular/core';
+import {Router, ROUTER_DIRECTIVES} from "@angular/router";
 import {SignInService} from "./services/signin-service";
-import {CORE_DIRECTIVES} from "angular2/common";
+import {CORE_DIRECTIVES} from "@angular/common";
 
 @Component({
   selector: 'sign-in',

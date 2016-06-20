@@ -1,8 +1,8 @@
 /**
  * Created by rudi on 09/04/16.
  */
-import {Component} from 'angular2/core';
-import {Router} from "angular2/router";
+import {Component} from '@angular/core';
+import {Router} from "@angular/router";
 import {UserService, UserParams} from "./services/user-service";
 import {SignInService} from "./services/signin-service";
 import {
@@ -11,7 +11,7 @@ import {
   Control,
   ControlGroup,
   Validators
-} from "angular2/common";
+} from "@angular/common";
 import {Validators as MyValidators, EMAIL_PATTERN} from "./forms/Validators";
 import 'rxjs/add/operator/mergeMap';
 

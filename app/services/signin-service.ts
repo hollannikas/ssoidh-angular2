@@ -1,8 +1,8 @@
 /**
  * Created by rudi on 09/04/16.
  */
-import {Injectable} from 'angular2/core';
-import {Response, RequestOptions, Headers, Http} from 'angular2/http';
+import {Injectable} from '@angular/core';
+import {Response, Http} from '@angular/http';
 import {Observable} from "rxjs";
 import 'rxjs/add/operator/do';
 

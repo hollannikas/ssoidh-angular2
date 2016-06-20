@@ -1,5 +1,5 @@
-import {Component} from 'angular2/core';
-import {Router, RouteConfig, ROUTER_DIRECTIVES, ROUTER_PROVIDERS} from 'angular2/router';
+import {Component} from '@angular/core';
+import {Router, Routes, ROUTER_DIRECTIVES, ROUTER_PROVIDERS} from '@angular/router';
 import {PictureGridComponent} from './picture-grid.component';
 import {TimelineComponent} from './timeline.component';
 import {UploadComponent} from './upload.component';
@@ -15,36 +15,29 @@ import {SignInService} from "./services/signin-service";
   providers: [ROUTER_PROVIDERS, SignInService]
 })
 
-@RouteConfig([
+@Routes([
   {
     path: '/grid',
-    name: 'PictureGrid',
-    component: PictureGridComponent,
-    useAsDefault: true
+    component: PictureGridComponent, //useAsDefault: true
   },
   {
     path: '/upload',
-    name: 'Upload',
     component: UploadComponent
   },
   {
     path: '/timeline',
-    name: 'Timeline',
     component: TimelineComponent
   },
   {
     path: '/picture/:id',
-    name: 'Picture',
     component: PictureComponent
   },
   {
     path: '/signin',
-    name: 'SignIn',
     component: SignInComponent
   },
   {
     path: '/signup',
-    name: 'SignUp',
     component: SignUpComponent
   }
 ])

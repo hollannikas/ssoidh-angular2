@@ -1,13 +1,13 @@
 /**
  * Created by rudi on 04/04/16.
  */
-import {Component} from 'angular2/core';
+import {Component} from '@angular/core';
 import {
   CORE_DIRECTIVES, FORM_DIRECTIVES, NgClass, NgStyle, FormBuilder, ControlGroup,
   Validators
-} from 'angular2/common';
+} from '@angular/common';
 import {UploadService} from './services/upload-service';
-import {Router, ROUTER_DIRECTIVES} from "angular2/router";
+import {Router, ROUTER_DIRECTIVES} from "@angular/router";
 import {Picture} from "./services/picture-service";
 
 @Component({
